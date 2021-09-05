@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8f507b7923f64c43b9650a33317ed36f" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="CarCompanyModel.Agent" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarCompanyModel.AgentType" Width="1.5" PointX="0.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarCompanyModel.Buy" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarCompanyModel.Car" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarCompanyModel.CarBrand" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarCompanyModel.CarColor" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarCompanyModel.CarModel" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarCompanyModel.ForeignGallery" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarCompanyModel.InternalGallery" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <AssociationConnector Association="CarCompanyModel.FK_Agent_AgentType" ManuallyRouted="false" />
+        <AssociationConnector Association="CarCompanyModel.FK_Buy_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="CarCompanyModel.FK_Buy_Car" ManuallyRouted="false" />
+        <AssociationConnector Association="CarCompanyModel.FK_Car_CarBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="CarCompanyModel.FK_Car_CarColor" ManuallyRouted="false" />
+        <AssociationConnector Association="CarCompanyModel.FK_Car_CarModel" ManuallyRouted="false" />
+        <AssociationConnector Association="CarCompanyModel.FK_Car_ForeignGallery" ManuallyRouted="false" />
+        <AssociationConnector Association="CarCompanyModel.FK_Car_InternalGallery" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

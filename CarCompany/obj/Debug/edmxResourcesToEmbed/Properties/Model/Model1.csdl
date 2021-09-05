@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarCompanyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AgentTypeID" Type="Int32" Nullable="false" />
+    <Property Name="AgentLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AgentFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AgentTel" Type="Int64" Nullable="false" />
+    <Property Name="AgentAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EMail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="Boolean" Nullable="false" />
+    <Property Name="NationalCode" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="AgentType" Relationship="Self.FK_Agent_AgentType" FromRole="Agent" ToRole="AgentType" />
+    <NavigationProperty Name="Buys" Relationship="Self.FK_Buy_Agent" FromRole="Agent" ToRole="Buy" />
+  </EntityType>
+  <EntityType Name="AgentType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AgentTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Agents" Relationship="Self.FK_Agent_AgentType" FromRole="AgentType" ToRole="Agent" />
+  </EntityType>
+  <EntityType Name="Buy">
+    <Key>
+      <PropertyRef Name="CarID" />
+      <PropertyRef Name="AgentID" />
+    </Key>
+    <Property Name="Count" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CarID" Type="Int32" Nullable="false" />
+    <Property Name="AgentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Agent" Relationship="Self.FK_Buy_Agent" FromRole="Buy" ToRole="Agent" />
+    <NavigationProperty Name="Car" Relationship="Self.FK_Buy_Car" FromRole="Buy" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BrandID" Type="Int32" Nullable="false" />
+    <Property Name="ModelID" Type="Int32" Nullable="false" />
+    <Property Name="ColorID" Type="Int32" Nullable="false" />
+    <Property Name="CarPrice" Type="Int64" Nullable="false" />
+    <Property Name="CarProductionYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ForeignGalleryID" Type="Int32" Nullable="false" />
+    <Property Name="InternalGalleryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Buys" Relationship="Self.FK_Buy_Car" FromRole="Car" ToRole="Buy" />
+    <NavigationProperty Name="CarBrand" Relationship="Self.FK_Car_CarBrand" FromRole="Car" ToRole="CarBrand" />
+    <NavigationProperty Name="CarColor" Relationship="Self.FK_Car_CarColor" FromRole="Car" ToRole="CarColor" />
+    <NavigationProperty Name="CarModel" Relationship="Self.FK_Car_CarModel" FromRole="Car" ToRole="CarModel" />
+    <NavigationProperty Name="ForeignGallery" Relationship="Self.FK_Car_ForeignGallery" FromRole="Car" ToRole="ForeignGallery" />
+    <NavigationProperty Name="InternalGallery" Relationship="Self.FK_Car_InternalGallery" FromRole="Car" ToRole="InternalGallery" />
+  </EntityType>
+  <EntityType Name="CarBrand">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarBrandName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_Car_CarBrand" FromRole="CarBrand" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="CarColor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarColorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_Car_CarColor" FromRole="CarColor" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="CarModel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarModelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_Car_CarModel" FromRole="CarModel" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="ForeignGallery">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ForeignTel" Type="Int64" Nullable="false" />
+    <Property Name="ForeignAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ForeignName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_Car_ForeignGallery" FromRole="ForeignGallery" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="InternalGallery">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InternalTel" Type="Int64" Nullable="false" />
+    <Property Name="InternalAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InternalName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_Car_InternalGallery" FromRole="InternalGallery" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Agent_AgentType">
+    <End Role="AgentType" Type="Self.AgentType" Multiplicity="1" />
+    <End Role="Agent" Type="Self.Agent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AgentType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Agent">
+        <PropertyRef Name="AgentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Buy_Agent">
+    <End Role="Agent" Type="Self.Agent" Multiplicity="1" />
+    <End Role="Buy" Type="Self.Buy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agent">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Buy">
+        <PropertyRef Name="AgentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Buy_Car">
+    <End Role="Car" Type="Self.Car" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Buy" Type="Self.Buy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Buy">
+        <PropertyRef Name="CarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_CarBrand">
+    <End Role="CarBrand" Type="Self.CarBrand" Multiplicity="1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarBrand">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="BrandID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_CarColor">
+    <End Role="CarColor" Type="Self.CarColor" Multiplicity="1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarColor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="ColorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_CarModel">
+    <End Role="CarModel" Type="Self.CarModel" Multiplicity="1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarModel">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="ModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_ForeignGallery">
+    <End Role="ForeignGallery" Type="Self.ForeignGallery" Multiplicity="1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForeignGallery">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="ForeignGalleryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_InternalGallery">
+    <End Role="InternalGallery" Type="Self.InternalGallery" Multiplicity="1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InternalGallery">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="InternalGalleryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarCompanyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Agents" EntityType="Self.Agent" />
+    <EntitySet Name="AgentTypes" EntityType="Self.AgentType" />
+    <EntitySet Name="Buys" EntityType="Self.Buy" />
+    <EntitySet Name="Cars" EntityType="Self.Car" />
+    <EntitySet Name="CarBrands" EntityType="Self.CarBrand" />
+    <EntitySet Name="CarColors" EntityType="Self.CarColor" />
+    <EntitySet Name="CarModels" EntityType="Self.CarModel" />
+    <EntitySet Name="ForeignGalleries" EntityType="Self.ForeignGallery" />
+    <EntitySet Name="InternalGalleries" EntityType="Self.InternalGallery" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_Agent_AgentType" Association="Self.FK_Agent_AgentType">
+      <End Role="AgentType" EntitySet="AgentTypes" />
+      <End Role="Agent" EntitySet="Agents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Buy_Agent" Association="Self.FK_Buy_Agent">
+      <End Role="Agent" EntitySet="Agents" />
+      <End Role="Buy" EntitySet="Buys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Buy_Car" Association="Self.FK_Buy_Car">
+      <End Role="Car" EntitySet="Cars" />
+      <End Role="Buy" EntitySet="Buys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_CarBrand" Association="Self.FK_Car_CarBrand">
+      <End Role="CarBrand" EntitySet="CarBrands" />
+      <End Role="Car" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_CarColor" Association="Self.FK_Car_CarColor">
+      <End Role="CarColor" EntitySet="CarColors" />
+      <End Role="Car" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_CarModel" Association="Self.FK_Car_CarModel">
+      <End Role="CarModel" EntitySet="CarModels" />
+      <End Role="Car" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_ForeignGallery" Association="Self.FK_Car_ForeignGallery">
+      <End Role="ForeignGallery" EntitySet="ForeignGalleries" />
+      <End Role="Car" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_InternalGallery" Association="Self.FK_Car_InternalGallery">
+      <End Role="InternalGallery" EntitySet="InternalGalleries" />
+      <End Role="Car" EntitySet="Cars" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
